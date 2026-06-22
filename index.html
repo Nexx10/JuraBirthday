@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday, My Everything ☁️</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <canvas id="petal-canvas"></canvas>
+
+    <div id="music-player">
+      <div class="music-disc" id="disc" onclick="toggleMusic()"></div>
+      <div class="music-info">
+        <div class="music-title">Semua Aku Dirayakan</div>
+        <div class="music-artist">Nadin Amizah</div>
+      </div>
+      <button
+        class="music-btn"
+        onclick="toggleMusic()"
+        id="play-btn"
+        title="Play / Pause"
+      >
+        ▶
+      </button>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="audio/Aku Yang Jatuh Cinta.mp3" type="audio/mpeg" />
+    </audio>
+
+    <section id="hero">
+      <div class="hero-bg-petals"></div>
+
+      <div class="gift-wrapper" id="gift-wrapper" onclick="openGift()">
+        <div class="gift-box">
+          <div class="bow">
+            <div class="bow-left"></div>
+            <div class="bow-right"></div>
+            <div class="bow-center"></div>
+          </div>
+          <div class="gift-lid" id="gift-lid">
+            <div class="gift-ribbon-v"></div>
+            <div class="gift-ribbon-h"></div>
+          </div>
+          <div class="gift-body">
+            <div class="gift-ribbon-v"></div>
+            <div class="gift-ribbon-h"></div>
+          </div>
+        </div>
+        <p class="click-hint">✨ tap to open</p>
+      </div>
+
+      <h1 class="hero-title" id="hero-title">
+        Happy Birthday,<br />My Everything
+      </h1>
+      <p class="hero-sub" id="hero-sub">
+        untuk kamu yang selalu ada di hatiku ☁️
+      </p>
+
+      <div class="scroll-down">
+        <span>scroll</span>
+        <span>↓</span>
+      </div>
+    </section>
+
+    <section id="love-letter">
+      <div class="letter-container">
+        <p class="section-eyebrow reveal">💌 a letter for you</p>
+        <h2 class="letter-heading reveal">
+          Hari kamu lahir adalah hari yang membuat dunia menjadi lebih indah.
+        </h2>
+        <div class="letter-body reveal">
+          <p>
+            Dulu, sebelum aku mengenalmu, aku tidak tahu bahwa seseorang bisa
+            membuat hati terasa lebih hangat hanya dengan senyumnya. Tapi kamu
+            datang, dan semuanya berubah — perlahan, dengan cara yang paling
+            manis.
+          </p>
+          <span class="letter-highlight"
+            >Kehadiranmu adalah hadiah yang paling berharga yang pernah aku
+            terima.</span
+          >
+          <p>
+            Hari ini, di hari spesialmu, aku ingin kamu tahu bahwa setiap hal
+            kecil tentang dirimu — cara kamu tertawa, cara kamu peduli, cara
+            kamu menjadi dirimu sendiri — adalah hal-hal yang membuatku jatuh
+            cinta setiap harinya.
+          </p>
+          <p>
+            Selamat ulang tahun, sayang. Semoga tahun ini membawa kebahagiaan
+            yang lebih besar, impian yang semakin dekat, dan cinta yang tak
+            pernah habis. Kamu layak mendapatkan semua keindahan yang ada di
+            dunia ini.
+          </p>
+        </div>
+        <div class="divider"></div>
+      </div>
+    </section>
+
+    <section id="celebrate">
+      <h2 class="celebrate-heading reveal">What I Celebrate About You</h2>
+      <div class="cards-grid">
+        <div class="celebrate-card reveal" style="transition-delay: 0.1s">
+          <span class="card-icon">😊</span>
+          <h3 class="card-title">Your Smile</h3>
+          <p class="card-text">
+            Senyummu bisa membuat hari yang paling kelabu terasa cerah. Setiap
+            kali kamu tersenyum, aku tahu bahwa dunia ini masih indah.
+          </p>
+        </div>
+        <div class="celebrate-card reveal" style="transition-delay: 0.2s">
+          <span class="card-icon">✨</span>
+          <h3 class="card-title">Your Soul</h3>
+          <p class="card-text">
+            Jiwamu begitu murni dan hangat. Ada ketenangan yang kamu bawa ke
+            mana pun kamu pergi, dan itu adalah salah satu hal yang paling
+            kucintai dari dirimu.
+          </p>
+        </div>
+        <div class="celebrate-card reveal" style="transition-delay: 0.3s">
+          <span class="card-icon">🌸</span>
+          <h3 class="card-title">Your Kindness</h3>
+          <p class="card-text">
+            Kebaikan hatimu tidak pernah berhenti membuatku kagum. Kamu selalu
+            tahu cara membuat orang lain merasa dihargai dan dicintai.
+          </p>
+        </div>
+        <div class="celebrate-card reveal" style="transition-delay: 0.4s">
+          <span class="card-icon">🎶</span>
+          <h3 class="card-title">Your Laughter</h3>
+          <p class="card-text">
+            Tawamu adalah melodi favoritku. Setiap kali kamu tertawa lepas, aku
+            merasa beruntung bisa menjadi orang yang ada di sisimu.
+          </p>
+        </div>
+        <div class="celebrate-card reveal" style="transition-delay: 0.5s">
+          <span class="card-icon">💪</span>
+          <h3 class="card-title">Your Strength</h3>
+          <p class="card-text">
+            Kekuatanmu dalam menghadapi setiap tantangan selalu menginspirasi
+            aku. Kamu lebih tangguh dari yang kamu sadari, dan itu sungguh luar
+            biasa.
+          </p>
+        </div>
+        <div class="celebrate-card reveal" style="transition-delay: 0.6s">
+          <span class="card-icon">💖</span>
+          <h3 class="card-title">Simply You</h3>
+          <p class="card-text">
+            Di atas segalanya, aku merayakan dirimu apa adanya. Tidak ada yang
+            perlu diubah, tidak ada yang perlu disembunyikan. Kamu sempurna
+            seperti ini.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="garden">
+      <p class="section-eyebrow reveal">☁️ your sky garden</p>
+      <h2 class="garden-heading reveal">
+        A Sky Full of Stars Just For You Today
+      </h2>
+      <p class="garden-sub reveal">
+        Sentuh setiap bintang untuk mengungkap doamu ✨
+      </p>
+
+      <div class="flowers-row" id="flowers-row">
+        <button
+          class="flower-btn reveal"
+          onclick="showWish(0)"
+          style="transition-delay: 0.1s"
+          title="Klik untuk doa"
+        >
+          ⭐
+        </button>
+        <button
+          class="flower-btn reveal"
+          onclick="showWish(1)"
+          style="transition-delay: 0.2s"
+        >
+          🌟
+        </button>
+        <button
+          class="flower-btn reveal"
+          onclick="showWish(2)"
+          style="transition-delay: 0.3s"
+        >
+          ✨
+        </button>
+        <button
+          class="flower-btn reveal"
+          onclick="showWish(3)"
+          style="transition-delay: 0.4s"
+        >
+          ☁️
+        </button>
+        <button
+          class="flower-btn reveal"
+          onclick="showWish(4)"
+          style="transition-delay: 0.5s"
+        >
+          🌙
+        </button>
+        <button
+          class="flower-btn reveal"
+          onclick="showWish(5)"
+          style="transition-delay: 0.6s"
+        >
+          ☀️
+        </button>
+        <button
+          class="flower-btn reveal"
+          onclick="showWish(6)"
+          style="transition-delay: 0.7s"
+        >
+          💫
+        </button>
+        <button
+          class="flower-btn reveal"
+          onclick="showWish(7)"
+          style="transition-delay: 0.8s"
+        >
+          🕊️
+        </button>
+      </div>
+
+      <div class="flower-wish" id="flower-wish">
+        Pilih bintang untuk mengungkap doa untukmu ☁️
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2 class="gallery-heading reveal">Your Beautiful Pictures</h2>
+      <p class="gallery-sub reveal">
+        Setiap foto menyimpan kenangan yang tak terlupakan
+      </p>
+
+      <div class="gallery-grid">
+        <div class="photo-card reveal" style="transition-delay: 0.1s">
+          <div class="photo-placeholder">
+            <span class="photo-icon">📷</span>
+            <span class="photo-label">Upload foto di sini</span>
+          </div>
+          <div class="photo-overlay">Momen terindahmu</div>
+        </div>
+        <div class="photo-card reveal" style="transition-delay: 0.2s">
+          <div class="photo-placeholder">
+            <span class="photo-icon">🖼</span>
+            <span class="photo-label">Upload foto di sini</span>
+          </div>
+          <div class="photo-overlay">Senyummu yang paling cantik</div>
+        </div>
+        <div class="photo-card reveal" style="transition-delay: 0.3s">
+          <div class="photo-placeholder">
+            <span class="photo-icon">✨</span>
+            <span class="photo-label">Upload foto di sini</span>
+          </div>
+          <div class="photo-overlay">Cahaya dalam hidupku</div>
+        </div>
+        <div class="photo-card reveal" style="transition-delay: 0.4s">
+          <div class="photo-placeholder">
+            <span class="photo-icon">💖</span>
+            <span class="photo-label">Upload foto di sini</span>
+          </div>
+          <div class="photo-overlay">Kamu yang selalu aku rindukan</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="closing">
+      <h2 class="closing-quote reveal">
+        "You Are Loved More<br />Than You Know"
+      </h2>
+
+      <div class="closing-body reveal">
+        <p>
+          Kamu sangat dicintai — jauh melebihi kata-kata yang bisa aku rangkai.
+          Setiap kehadiranmu berarti. Setiap tawa, setiap air mata, setiap
+          langkah yang kamu ambil — semua itu berharga. Kamu berharga.
+        </p>
+        <p>
+          Di hari ulang tahunmu ini, aku berharap kamu merasakan betapa besar
+          cinta yang mengelilingimu. Selamat ulang tahun, sayangku. Semoga
+          jalanmu selalu diterangi langit yang cerah.
+        </p>
+      </div>
+
+      <div class="hearts-row reveal">
+        <span class="heart-icon">🩵</span>
+        <span class="heart-icon">💙</span>
+        <span class="heart-icon">🤍</span>
+        <span class="heart-icon">💙</span>
+        <span class="heart-icon">🩵</span>
+      </div>
+
+      <div class="next-page-cta reveal">
+        <a href="candle.html" id="candle-link" class="candle-link-btn">
+          <span class="flame">🕯️</span> Tiup lilinmu sekarang
+        </a>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="made-with reveal">made with endless love, just for you 🩵</p>
+    </section>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

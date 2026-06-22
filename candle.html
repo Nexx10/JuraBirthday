@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buat Permohonanmu 🕯️</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/candle.css" />
+  </head>
+  <body>
+    <canvas id="petal-canvas"></canvas>
+
+    <div id="music-player">
+      <div class="music-disc" id="disc" onclick="toggleMusic()"></div>
+      <div class="music-info">
+        <div class="music-title">Lagu Kedua</div>
+        <div class="music-artist">Ganti dengan judul lagu</div>
+      </div>
+      <button
+        class="music-btn"
+        onclick="toggleMusic()"
+        id="play-btn"
+        title="Play / Pause"
+      >
+        ▶
+      </button>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="audio/Birthday Song Piano.mp3" type="audio/mpeg" />
+    </audio>
+
+    <section id="candle-stage">
+      <p class="candle-eyebrow">☁️ make a wish</p>
+      <h1 class="candle-heading">Buat Permohonanmu</h1>
+      <p class="candle-sub">
+        Tutup matamu sebentar, buat satu permohonan dari hati, lalu tahan tombol
+        di bawah untuk meniup lilinnya.
+      </p>
+
+      <div class="cake-wrapper">
+        <div class="candles-row">
+          <div class="candle">
+            <div class="flame-wrap">
+              <div class="flame"></div>
+              <div class="smoke"></div>
+            </div>
+            <div class="candle-stick"></div>
+          </div>
+          <div class="candle">
+            <div class="flame-wrap">
+              <div class="flame"></div>
+              <div class="smoke"></div>
+            </div>
+            <div class="candle-stick"></div>
+          </div>
+          <div class="candle">
+            <div class="flame-wrap">
+              <div class="flame"></div>
+              <div class="smoke"></div>
+            </div>
+            <div class="candle-stick"></div>
+          </div>
+        </div>
+        <div class="cake">
+          <div class="cake-layer top"></div>
+          <div class="cake-layer middle"></div>
+          <div class="cake-layer base"></div>
+        </div>
+      </div>
+
+      <div class="blow-control">
+        <button class="blow-btn" id="blow-btn">
+          <div class="blow-btn-progress" id="blow-progress"></div>
+          <div class="blow-btn-inner" id="blow-inner">tahan untuk meniup</div>
+        </button>
+        <p class="blow-hint">tahan tombolnya sampai lilin padam</p>
+      </div>
+
+      <div class="wish-result" id="wish-result">
+        <h2 class="wish-result-heading">Permohonanmu telah terkirim ✨</h2>
+        <p class="wish-result-text">
+          Semoga apa pun yang kamu harapkan barusan, perlahan menemukan jalannya
+          untuk menjadi nyata. Tapi sebelum itu, ada satu hal lagi yang aku
+          siapkan khusus untukmu.
+        </p>
+        <a href="secret.html" id="secret-link" class="secret-link-btn">
+          💌 Buka surat rahasia untukmu
+        </a>
+      </div>
+    </section>
+
+    <script src="js/candle.js"></script>
+  </body>
+</html>
