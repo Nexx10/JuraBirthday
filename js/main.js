@@ -72,12 +72,75 @@ function animatePetals() {
 animatePetals();
 
 // =====================
+// MUSIC (AUTO-PLAY TRICK)
+// =====================
+const audio = document.getElementById("bg-music");
+const disc = document.getElementById("disc");
+const playBtn = document.getElementById("play-btn");
+let playing = false;
+
+function playMusic() {
+  if (!playing && audio) {
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          playing = true;
+          disc.classList.add("playing");
+          playBtn.textContent = "⏸";
+        })
+        .catch((e) => console.log("Autoplay nunggu interaksi user..."));
+    }
+  }
+}
+
+function toggleMusic() {
+  if (playing) {
+    audio.pause();
+    disc.classList.remove("playing");
+    playBtn.textContent = "▶";
+    playing = false;
+  } else {
+    playMusic();
+  }
+}
+
+// Trik ngakalin blokiran awal
+window.addEventListener("load", () => {
+  const playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        playing = true;
+        disc.classList.add("playing");
+        playBtn.textContent = "⏸";
+      })
+      .catch((error) => {
+        // Pasang jebakan interaksi di seluruh layar
+        const startOnInteraction = () => {
+          playMusic();
+          document.removeEventListener("click", startOnInteraction);
+          document.removeEventListener("touchstart", startOnInteraction);
+        };
+        document.addEventListener("click", startOnInteraction, { once: true });
+        document.addEventListener("touchstart", startOnInteraction, {
+          once: true,
+        });
+      });
+  }
+});
+
+// =====================
 // GIFT OPEN
 // =====================
 let giftOpened = false;
 function openGift() {
   if (giftOpened) return;
   giftOpened = true;
+
+  // PAKSA LAGU MUTER PAS KADO DITAP BIAR TEMBUS BLOKIRAN HP
+  playMusic();
+
   document.getElementById("gift-lid").classList.add("open");
 
   // Ngilangin tulisan "tap to open" pas diklik
@@ -107,61 +170,6 @@ function openGift() {
     document.getElementById("hero-sub").classList.add("visible");
   }, 600);
 }
-
-// =====================
-// MUSIC (AUTO-PLAY TRICK)
-// =====================
-const audio = document.getElementById("bg-music");
-const disc = document.getElementById("disc");
-const playBtn = document.getElementById("play-btn");
-let playing = false;
-
-function playMusic() {
-  if (!playing) {
-    audio
-      .play()
-      .then(() => {
-        playing = true;
-        disc.classList.add("playing");
-        playBtn.textContent = "⏸";
-      })
-      .catch((e) => console.log("Autoplay nunggu interaksi user..."));
-  }
-}
-
-function toggleMusic() {
-  if (playing) {
-    audio.pause();
-    disc.classList.remove("playing");
-    playBtn.textContent = "▶";
-    playing = false;
-  } else {
-    playMusic();
-  }
-}
-
-window.addEventListener("load", () => {
-  const playPromise = audio.play();
-  if (playPromise !== undefined) {
-    playPromise
-      .then(() => {
-        playing = true;
-        disc.classList.add("playing");
-        playBtn.textContent = "⏸";
-      })
-      .catch((error) => {
-        const startOnInteraction = () => {
-          playMusic();
-          document.removeEventListener("click", startOnInteraction);
-          document.removeEventListener("touchstart", startOnInteraction);
-        };
-        document.addEventListener("click", startOnInteraction, { once: true });
-        document.addEventListener("touchstart", startOnInteraction, {
-          once: true,
-        });
-      });
-  }
-});
 
 // =====================
 // GARDEN WISHES & OTHERS
