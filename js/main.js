@@ -1,11 +1,11 @@
 // =====================
-// LIGHTWEIGHT CANVAS PATHS (LAG FIX)
+// LIGHTWEIGHT CANVAS PATHS (RESPONSIVE DI HP)
 // =====================
 const canvas = document.getElementById("petal-canvas");
 const ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap DPR at 2 for performance
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
   canvas.width = window.innerWidth * dpr;
   canvas.height = window.innerHeight * dpr;
   ctx.scale(dpr, dpr);
@@ -14,7 +14,9 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
 const petals = [];
-const maxPetals = 15; // Dikurangin biar ga berat
+// Kalo dibuka di HP (layar < 768px), daunnya dikurangin biar ga nutupin layar
+const isMobile = window.innerWidth <= 768;
+const maxPetals = isMobile ? 6 : 15;
 
 class Petal {
   constructor() {
@@ -31,7 +33,6 @@ class Petal {
     this.rotSpeed = (Math.random() - 0.5) * 0.05;
     this.opacity = Math.random() * 0.5 + 0.3;
     this.wobble = Math.random() * Math.PI * 2;
-    // Warna kelopak (putih dan biru muda transparan)
     const colors = ["rgba(255,255,255,", "rgba(186,230,253,"];
     this.colorBase = colors[Math.floor(Math.random() * colors.length)];
   }
@@ -49,7 +50,6 @@ class Petal {
     ctx.scale(this.size, this.size);
     ctx.fillStyle = this.colorBase + this.opacity + ")";
 
-    // Gambar bentuk daun/kelopak geometris simpel (jauh lebih ringan dari text emoji)
     ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.bezierCurveTo(1, 1, 1, 2, 0, 3);
@@ -72,7 +72,7 @@ function animatePetals() {
 animatePetals();
 
 // =====================
-// GIFT OPEN (THROTTLED BURST)
+// GIFT OPEN
 // =====================
 let giftOpened = false;
 function openGift() {
@@ -80,7 +80,13 @@ function openGift() {
   giftOpened = true;
   document.getElementById("gift-lid").classList.add("open");
 
-  // Burst kelopak diatur per 50ms biar ga patah-patah
+  // Ngilangin tulisan "tap to open" pas diklik
+  const hint = document.getElementById("click-hint-text");
+  if (hint) {
+    hint.style.opacity = "0";
+    setTimeout(() => (hint.style.display = "none"), 500);
+  }
+
   let burstCount = 0;
   const burstInterval = setInterval(() => {
     if (burstCount >= 12) {
@@ -119,9 +125,7 @@ function playMusic() {
         disc.classList.add("playing");
         playBtn.textContent = "⏸";
       })
-      .catch((e) => {
-        console.log("Autoplay nunggu interaksi user...");
-      });
+      .catch((e) => console.log("Autoplay nunggu interaksi user..."));
   }
 }
 
@@ -136,29 +140,21 @@ function toggleMusic() {
   }
 }
 
-// Trik ngakalin blokiran Autoplay Browser
 window.addEventListener("load", () => {
-  // Coba muter otomatis dlu pas loading beres
   const playPromise = audio.play();
-
   if (playPromise !== undefined) {
     playPromise
       .then(() => {
-        // Kalo browsernya ngijinin, langsung jalan
         playing = true;
         disc.classList.add("playing");
         playBtn.textContent = "⏸";
       })
       .catch((error) => {
-        // Kalo diblokir, pasang jebakan.
-        // Pas user ngeklik/tap DI MANA AJA, lagu langsung muter.
         const startOnInteraction = () => {
           playMusic();
-          // Hapus jebakan kalo lagu udah muter biar ga berat
           document.removeEventListener("click", startOnInteraction);
           document.removeEventListener("touchstart", startOnInteraction);
         };
-
         document.addEventListener("click", startOnInteraction, { once: true });
         document.addEventListener("touchstart", startOnInteraction, {
           once: true,
@@ -168,7 +164,7 @@ window.addEventListener("load", () => {
 });
 
 // =====================
-// GARDEN WISHES
+// GARDEN WISHES & OTHERS
 // =====================
 const wishes = [
   "☁️ Semoga hidupmu selalu dipenuhi dengan kebahagiaan yang tak pernah habis.",
@@ -193,9 +189,6 @@ function showWish(index) {
   }, 200);
 }
 
-// =====================
-// SCROLL REVEAL
-// =====================
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -213,9 +206,6 @@ document
   )
   .forEach((el) => observer.observe(el));
 
-// =====================
-// NAVIGATE TO CANDLE PAGE
-// =====================
 document.addEventListener("DOMContentLoaded", () => {
   const candleBtn = document.getElementById("candle-link");
   if (candleBtn) {

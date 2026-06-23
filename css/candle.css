@@ -135,7 +135,8 @@ body.fading-out {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  /* Tambahin padding bawah jadi 120px biar tombol di HP aman ga ketimpa musik */
+  padding: 40px 20px 120px 20px;
   text-align: center;
 }
 
@@ -439,4 +440,122 @@ body.fading-out {
     opacity: 0;
     transform: translateY(-120px) scale(1.2) rotate(180deg);
   }
+}
+
+/* =====================
+   MODAL POP-UP PASSWORD
+   ===================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 25, 47, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--navy-base);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 35px 30px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 340px;
+  width: 90%;
+  transform: translateY(30px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-title {
+  color: var(--sky-bright);
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+.modal-text {
+  color: var(--text-sub);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+#pw-input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  background: var(--navy-dark);
+  color: var(--text-main);
+  font-family: "Inter", sans-serif;
+  margin-bottom: 8px;
+  text-align: center;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+#pw-input:focus {
+  border-color: var(--sky-bright);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.modal-error {
+  color: #f43f5e;
+  font-size: 0.85rem;
+  height: 1rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.modal-btn {
+  padding: 12px 24px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+.modal-btn.cancel {
+  background: transparent;
+  color: var(--text-sub);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.modal-btn.cancel:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.modal-btn.submit {
+  background: linear-gradient(135deg, var(--sky-dim), var(--sky-bright));
+  color: var(--navy-dark);
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
+.modal-btn.submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
 }

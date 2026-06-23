@@ -13,11 +13,11 @@
   <body>
     <canvas id="petal-canvas"></canvas>
 
+    <!-- MUSIC PLAYER -->
     <div id="music-player">
       <div class="music-disc" id="disc" onclick="toggleMusic()"></div>
       <div class="music-info">
-        <div class="music-title">Lagu Kedua</div>
-        <div class="music-artist">Ganti dengan judul lagu</div>
+        <div class="music-title">Happy Birthday</div>
       </div>
       <button
         class="music-btn"
@@ -92,6 +92,25 @@
         </a>
       </div>
     </section>
+
+    <!-- MODAL POPUP PASSWORD -->
+    <div id="pw-modal" class="modal-overlay">
+      <div class="modal-content">
+        <h3 class="modal-title">Surat Rahasia 💌</h3>
+        <p class="modal-text">Masukkan password untuk membuka surat ini:</p>
+        <input
+          type="password"
+          id="pw-input"
+          placeholder="Ketik password di sini..."
+          autocomplete="off"
+        />
+        <p id="pw-error" class="modal-error"></p>
+        <div class="modal-buttons">
+          <button id="pw-cancel" class="modal-btn cancel">Batal</button>
+          <button id="pw-submit" class="modal-btn submit">Buka Surat</button>
+        </div>
+      </div>
+    </div>
 
     <script src="js/candle.js"></script>
   </body>

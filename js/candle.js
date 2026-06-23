@@ -14,6 +14,9 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
 const petals = [];
+const isMobile = window.innerWidth <= 768;
+const maxPetals = isMobile ? 4 : 12; // Di hp lebih dikit lagi biar lega layarnya
+
 class Petal {
   constructor() {
     this.reset();
@@ -52,7 +55,7 @@ class Petal {
     ctx.restore();
   }
 }
-for (let i = 0; i < 12; i++) petals.push(new Petal());
+for (let i = 0; i < maxPetals; i++) petals.push(new Petal());
 
 function animatePetals() {
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
@@ -169,14 +172,56 @@ blowBtn.addEventListener("touchstart", startHold, { passive: false });
 blowBtn.addEventListener("touchend", endHold);
 blowBtn.addEventListener("touchcancel", endHold);
 
-// NAVIGATE
+// =====================
+// NAVIGATE & CUSTOM MODAL PASSWORD
+// =====================
 document.addEventListener("DOMContentLoaded", () => {
   const secretBtn = document.getElementById("secret-link");
-  if (secretBtn) {
+  const modal = document.getElementById("pw-modal");
+  const pwInput = document.getElementById("pw-input");
+  const pwSubmit = document.getElementById("pw-submit");
+  const pwCancel = document.getElementById("pw-cancel");
+  const pwError = document.getElementById("pw-error");
+  let targetHref = "";
+
+  if (secretBtn && modal) {
+    // 1. Pas tombol surat diklik, buka pop-up
     secretBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      document.body.classList.add("fading-out");
-      setTimeout(() => (window.location.href = e.currentTarget.href), 650);
+      targetHref = e.currentTarget.href; // Simpan link rahasianya
+      modal.classList.add("active");
+      pwInput.value = ""; // Kosongin input tiap dibuka
+      pwError.textContent = "";
+      setTimeout(() => pwInput.focus(), 100); // Otomatis fokus ke kotak ngetik
+    });
+
+    // 2. Fungsi buat ngecek password
+    const checkPassword = () => {
+      const pw = pwInput.value;
+
+      // MINTA PASSWORD DI SINI (GANTI '1234' JADI PW YANG LU MAU)
+      if (pw === "1234") {
+        modal.classList.remove("active"); // Tutup pop-up
+        document.body.classList.add("fading-out"); // Efek transisi
+        setTimeout(() => (window.location.href = targetHref), 650); // Mulus pindah halaman
+      } else {
+        pwError.textContent = "Yah passwordnya salah! Coba lagi."; // Pesan error di dalem pop-up
+        pwInput.value = "";
+        pwInput.focus();
+      }
+    };
+
+    // 3. Tombol Submit diklik
+    pwSubmit.addEventListener("click", checkPassword);
+
+    // 4. Biar bisa pencet tombol 'Enter' di keyboard buat lanjut
+    pwInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") checkPassword();
+    });
+
+    // 5. Tombol Cancel diklik
+    pwCancel.addEventListener("click", () => {
+      modal.classList.remove("active");
     });
   }
 });
