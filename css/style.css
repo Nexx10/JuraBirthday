@@ -6,7 +6,7 @@
   --sky-bright: #38bdf8;
   --gold: #fbbf24;
   --text-main: #f8fafc;
-  --text-sub: #94a3b8;
+  --text-sub: #f7f4fe;
 }
 
 * {
@@ -872,4 +872,34 @@ body.fading-out {
   to {
     opacity: 0;
   }
+}
+
+/* =========================================
+   OVERRIDE KETEBALAN FONT KECIL (BIAR JELAS)
+   ========================================= */
+p,
+.hero-sub,
+.letter-body p,
+.card-text,
+.garden-sub,
+.flower-wish,
+.gallery-sub,
+.closing-body p,
+.made-with,
+.section-eyebrow,
+.click-hint {
+  font-weight: 500 !important;
+  letter-spacing: 0.02em;
+}
+
+.card-text {
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+.music-title {
+  font-weight: 700 !important;
+}
+.music-artist {
+  font-weight: 500 !important;
 }
