@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const pw = pwInput.value;
 
       // MINTA PASSWORD DI SINI (GANTI '1234' JADI PW YANG LU MAU)
-      if (pw === "1234") {
+      if (pw === "i love you") {
         modal.classList.remove("active"); // Tutup pop-up
         document.body.classList.add("fading-out"); // Efek transisi
         setTimeout(() => (window.location.href = targetHref), 650); // Mulus pindah halaman
